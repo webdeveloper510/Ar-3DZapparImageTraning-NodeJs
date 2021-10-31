@@ -65,6 +65,6 @@ function errHandler(err, req, res, next) {
 }
 //404 error handler
 app.use(errHandler);
-app.listen(4000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("server up and running");
 });
