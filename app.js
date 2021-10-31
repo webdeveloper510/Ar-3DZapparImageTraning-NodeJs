@@ -30,7 +30,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
   //train is taking image as input at outputin target file
   train(`./upload/images/${req.file.filename}`)
     .then((file) => {
-      // res is a Buffer containing the target file data
+      // file is a Buffer containing the target file data
       //removing the image
       fs.unlink(`./upload/images/${req.file.filename}`, function (err) {
         if (err) {
@@ -51,7 +51,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
 //API Testing purposes
 // res.json({
 //   success: 1,
-//   image_url: `http://localhost:4000/profile/${req.file.filename}`,
+//   image_url: `http://localhost:5000/profile/${req.file.filename}`,
 // });
 
 //error handling
@@ -65,6 +65,8 @@ function errHandler(err, req, res, next) {
 }
 //404 error handler
 app.use(errHandler);
+
+//server start
 app.listen(process.env.PORT || 5000, () => {
   console.log("server up and running");
 });
