@@ -25,6 +25,9 @@ const upload = multer({
 
 //API Calls
 app.use("/profile", express.static("/home/ubuntu/zappar-on-fly-image-train/upload/images"));
+app.get("/ping", (req, res)=>{
+    return res.send("hello")
+})
 app.post("/upload", upload.single("image"), (req, res) => {
   console.log("before");
   //train is taking image as input at outputin target file
