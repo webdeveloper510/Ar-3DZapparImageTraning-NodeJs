@@ -8,7 +8,7 @@ const { train } = require("@zappar/imagetraining");
 
 // storage engine
 const storage = multer.diskStorage({
-  destination: "./upload/images",
+  destination: "/home/ubuntu/zappar-on-fly-image-train/upload/images",
   filename: (req, file, cb) => {
     return cb(
       null,
@@ -24,7 +24,7 @@ const upload = multer({
 });
 
 //API Calls
-app.use("/profile", express.static("/home/ubuntu/zappar-on-fly-image-train/upload/images"));
+// app.use("/profile", express.static("/home/ubuntu/zappar-on-fly-image-train/upload/images"));
 app.get("/ping", (req, res)=>{
   console.log("hello server")
     return res.send("hello client")
