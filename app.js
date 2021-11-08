@@ -36,7 +36,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
     .then((file) => {
       // res is a Buffer containing the target file data
       //removing the image
-      fs.unlink(`./upload/images/${req.file.filename}`, function (err) {
+      fs.unlink(`/home/ubuntu/zappar-on-fly-image-train/upload/images/${req.file.filename}`, function (err) {
         if (err) {
           throw err;
         } else {
