@@ -8,7 +8,7 @@ const { train } = require("@zappar/imagetraining");
 
 // storage engine
 const storage = multer.diskStorage({
-  destination: "/home/ubuntu/zappar-on-fly-image-train/upload/images",
+  destination: "./upload/images",
   filename: (req, file, cb) => {
     return cb(
       null,
@@ -32,11 +32,11 @@ app.get("/ping", (req, res)=>{
 app.post("/upload", upload.single("image"), (req, res) => {
   console.log("before");
   //train is taking image as input at outputin target file
-  train(`/home/ubuntu/zappar-on-fly-image-train/upload/images/${req.file.filename}`)
+  train(`./upload/images/${req.file.filename}`)
     .then((file) => {
       // res is a Buffer containing the target file data
       //removing the image
-      fs.unlink(`/home/ubuntu/zappar-on-fly-image-train/upload/images/${req.file.filename}`, function (err) {
+      fs.unlink(`./upload/images/${req.file.filename}`, function (err) {
         if (err) {
           throw err;
         } else {
@@ -69,6 +69,6 @@ function errHandler(err, req, res, next) {
 }
 //404 error handler
 app.use(errHandler);
-app.listen(5001, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("server up and running");
 });
