@@ -23,7 +23,7 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024,
   },
 });
-const Zpturl = "http://3.109.213.210:5000/upload/images/"
+const Zpturl = "http://13.232.225.65:5000/upload/images/"
 //API Calls
 app.use("/upload", express.static(__dirname + "/upload"));
 app.get("/ping", (req, res)=>{
@@ -37,7 +37,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
       //removing the image
       fs.unlink(`./upload/images/${req.file.filename}`, function (err) {
         if (err) {
-          throw err;
+          throw err;  
         } else {
           console.log("Successfully deleted the file.");
           //writing to file to make sure binary data is right
